@@ -39,10 +39,6 @@ def say_hello():
     for item in AWESOMENESS:
       print(item)
 
-      # print("""
-      # <option value ="{}">{}</option>
-      # """.format(item, item))
-
 
       option_string += """
       <option value ="{}">{}</option>
@@ -72,54 +68,16 @@ def say_hello():
 
     return html_string
 
-    # return """
-    # <!doctype html>
-    # <html>
-    #   <head>
-    #     <title>Hi There!</title>
-    #   </head>
-    #   <body>
-    #     <h1>Hi There!</h1>
-    #     <form action="/greet">
-    #       What's your name? <input type="text" name="person">
-    #       <select name="awesomeness">
-    #         <option value="awesome">Awesome</option>
-    #         <option value="terrific">Terrific</option>
-    #         <option value="fantastic">Fantastic</option>
-    #         <option value="neato">Neato</option>
-    #         <option value="fantabulous">fantabulous</option>
-    #         <option value="wowza">Wowza</option>
-    #         <option value="oh-so-not-meh">oh-so-not-meh</option>
-    #         <option value="brilliant">Brilliant</option>
-    #         <option value="ducky">Ducky</option>
-    #         <option value="coolio">Coolio</option>
-    #         <option value="incredible">Incredible</option>
-    #         <option value="wonderful">Wonderful</option>
-    #         <option value="smashing">Smashing</option>
-    #         <option value="lovely">Lovely</option> 
-    #       </select> <br> <br>
-    #       <input type="submit" value="Submit">
-    #     </form>
-    #     <a href="/diss">Go to disses!</a>
-    #   </body>
-    # </html>
-    # """
-
 
 @app.route("/greet")
 def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
-    # compliment = request.args.get("awesomeness")
     attribute = request.args.get("awesomeness")
 
     if attribute == None:
         attribute = request.args.get("disses")
-
-    # compliment = choice(AWESOMENESS)
-
-    # y = x
 
     return """
     <!doctype html>
@@ -136,30 +94,57 @@ def greet_person():
 @app.route("/diss")
 def diss_person():
 
-      return """
-      <!doctype html>
-      <html>
-        <head>
-          <title>Hi There!</title>
-        </head>
-        <body>
-          <h1>Hi There!</h1>
-          <form action="/greet">
-            What's your name? <input type="text" name="person">
-            <select name="disses">
-              <option value="dummkopf">Dummkopf</option>
-              <option value="rumpelstilzchen">Rumpelstilzchen</option>
-              <option value="rumpus">Rumpus</option>
-              <option value="babadook">Babadook</option>
-              <option value="boogey man">Boogey Man</option>
-              <option value="silly sausage">Silly Sausage</option>
-            </select> <br> <br>
-            <input type="submit" value="Submit">
-          </form>
-          <a href="/diss">Go to disses!</a>
-        </body>
-      </html>
-      """
+
+  option_string = ""
+  for item in DISSES:
+    option_string += """<option value="{}">{}</option>
+    """.format(item, item)
+
+    html_string = """
+    <!doctype html>
+    <html>
+      <head>
+        <title>Hi There!</title>
+      </head>
+      <body>
+        <h1>Hi There!</h1>
+        <form action="/greet">
+          What's your name? <input type="text" name="person">
+          <select name="disses">
+    """ + option_string + """
+          </select> <br> <br>
+          <input type="submit" value="Submit">
+        </form>
+        <a href="/diss">Go to disses!</a>
+      </body>
+    </html>
+    """
+
+  return html_string
+      # return """
+      # <!doctype html>
+      # <html>
+      #   <head>
+      #     <title>Hi There!</title>
+      #   </head>
+      #   <body>
+      #     <h1>Hi There!</h1>
+      #     <form action="/greet">
+      #       What's your name? <input type="text" name="person">
+      #       <select name="disses">
+      #         <option value="dummkopf">Dummkopf</option>
+      #         <option value="rumpelstilzchen">Rumpelstilzchen</option>
+      #         <option value="rumpus">Rumpus</option>
+      #         <option value="babadook">Babadook</option>
+      #         <option value="boogey man">Boogey Man</option>
+      #         <option value="silly sausage">Silly Sausage</option>
+      #       </select> <br> <br>
+      #       <input type="submit" value="Submit">
+      #     </form>
+      #     <a href="/diss">Go to disses!</a>
+      #   </body>
+      # </html>
+      # """
 
 
 
